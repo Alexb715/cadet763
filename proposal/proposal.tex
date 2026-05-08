@@ -1,0 +1,205 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Packages -----------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+% --- Colours / styling --------------------------------------------------------
+\definecolor{accent}{HTML}{0B3D91}   % Air-force-ish blue
+\definecolor{muted}{HTML}{555555}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=accent,
+  citecolor=accent,
+  pdftitle={Proposal: Official Website for 763 Squadron},
+  pdfauthor={Alex Beaulieu}
+}
+
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{accent!85!black}}{\thesubsection}{0.6em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\color{muted}Proposal --- 763 Squadron Website}
+\fancyfoot[R]{\small\color{muted}Page \thepage\ of \pageref{LastPage}}
+
+% --- Document metadata --------------------------------------------------------
+\newcommand{\propTitle}{Proposal for an Official Website}
+\newcommand{\propSubtitle}{763 ``Bouctouche'' Squadron, Royal Canadian Air Cadets}
+\newcommand{\propAuthor}{Alex Beaulieu}
+\newcommand{\propEmail}{abeaulieu815@gmail.com}
+\newcommand{\propDate}{\today}
+
+% =============================================================================
+\begin{document}
+
+% --- Cover --------------------------------------------------------------------
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\Huge\bfseries\color{accent}\propTitle\par}
+\vspace{0.6cm}
+{\Large\propSubtitle\par}
+
+\vspace{2.5cm}
+\rule{0.6\linewidth}{0.4pt}\\[0.4cm]
+{\large Prepared by \textbf{\propAuthor}\par}
+{\normalsize \href{mailto:\propEmail}{\propEmail}\par}
+\vspace{0.4cm}
+\rule{0.6\linewidth}{0.4pt}
+
+\vfill
+{\normalsize\color{muted}\propDate\par}
+\end{titlepage}
+
+% --- Summary ------------------------------------------------------------------
+\section*{At a glance}
+\addcontentsline{toc}{section}{At a glance}
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+\textbf{What I am offering} & A complete, modern, bilingual (EN/FR) website for 763 Squadron, built and maintained by me at no labour cost. \\
+\textbf{What it includes}   & Public site, news feed, training and joining information, staff directory, photo galleries, and an editor-friendly admin panel so squadron staff can update content without touching code. \\
+\textbf{What I provide}     & Design, development, hosting on infrastructure I already operate, software updates, security patches, backups, and email support --- for an extended period (see \S\ref{sec:commitment}). \\
+\textbf{What the squadron pays for} & A domain name (e.g.\ \texttt{763aircadets.ca}), which costs roughly \textbf{CAD\,\$20 per year} from any registrar. Nothing else. \\
+\textbf{What I ask in return} & Permission to list this project on my professional résumé and portfolio as my own work. \\
+\bottomrule
+\end{tabularx}
+
+% --- 1. Why ------------------------------------------------------------------
+\section{Why a dedicated website matters}
+
+The squadron currently relies on social media for visibility. That works, but it has real limits. A dedicated website strengthens the squadron in concrete ways:
+
+\begin{description}[style=nextline,leftmargin=1.4em,itemsep=0.4em]
+  \item[Recruiting.] Parents and prospective cadets searching ``air cadets Bouctouche'' should land on a page that immediately answers the questions they actually ask: \emph{Who are you? Where do you meet? When? Is it free? How do we join?} A Facebook page does not show up reliably for those queries; a real website with proper SEO does.
+  \item[Credibility.] An official squadron website signals seriousness to parents, sponsors, and the local community. It is what people expect of an institution affiliated with the Canadian Armed Forces and the Air Cadet League.
+  \item[Independence from social platforms.] Information posted on a website is not buried by an algorithm, gated behind a login, or subject to a platform's policy changes. It is permanently accessible and indexable.
+  \item[Bilingual service.] Bouctouche is a francophone-majority community. A bilingual (EN/FR) site serves the local population properly --- not as a translated afterthought, but as a first-class feature.
+  \item[Single source of truth.] Meeting times, address, contact information, joining requirements, and the training calendar live in one place that is easy to share and easy to keep current.
+  \item[A platform that grows with the squadron.] Once the foundation is in place, future additions (forms, photo archives, alumni pages, fundraising notices) can be built on top without starting over.
+\end{description}
+
+% --- 2. What gets built ------------------------------------------------------
+\section{What I will deliver}
+
+The site is already substantially built. What this proposal formalises is the deployment, ongoing operation, and handover of editorial control to squadron staff.
+
+\subsection{Public-facing features}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Bilingual (English / French) interface with a one-click language toggle, reflecting the squadron's community.
+  \item Home page with hero section, the squadron's three pillars (Citizenship, Leadership, Aviation), latest-news teaser, and contact band.
+  \item Dedicated pages for: \emph{About}, \emph{Training}, \emph{Staff}, \emph{News}, and \emph{How to Join}.
+  \item Live news feed automatically populated from the squadron's Facebook page (posts and upcoming events), so updates posted to Facebook appear on the website with no extra work.
+  \item Mobile-first responsive design --- the majority of parents will visit from a phone.
+  \item Accessibility-conscious markup (semantic HTML, keyboard navigation, sensible colour contrast).
+\end{itemize}
+
+\subsection{Admin features (for staff use)}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Secure login for squadron staff with two roles: \textbf{admin} (full control, including user management) and \textbf{editor} (content updates only).
+  \item In-place editing: any text on the site can be edited by clicking it while logged in --- no Markdown, no HTML, no code.
+  \item Image library with upload, replace, and reuse, so staff can swap photos directly from the browser.
+  \item Self-serve password changes and admin-controlled user management.
+  \item A clear ``edit mode'' banner so staff always know whether their changes are visible to the public.
+\end{itemize}
+
+\subsection{What is under the hood (briefly)}
+A modern React frontend, a small Go backend, and a SQLite database, all running in Docker containers behind the reverse proxy I already operate. The stack is lightweight, fast, and inexpensive to host. None of this should matter to day-to-day users --- it matters because it means the site is robust and cheap for me to keep running.
+
+% --- 3. Commitment -----------------------------------------------------------
+\section{Hosting and support commitment}\label{sec:commitment}
+
+I will personally host and maintain the site on infrastructure I already operate for other projects. This includes:
+
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Server hosting and bandwidth.
+  \item TLS / HTTPS certificates (renewed automatically).
+  \item Routine software updates and security patches.
+  \item Off-server backups of the database and uploaded images.
+  \item Email support for squadron staff if something breaks or a new editor needs onboarding.
+  \item Reasonable small enhancements --- typo fixes, layout tweaks, adding a new staff photo, etc.
+\end{itemize}
+
+\textbf{Duration.} I commit to providing this hosting and support \textbf{for an extended period --- a minimum of three years, with the intent to continue well beyond that as long as it remains practical for me to do so}. To be transparent: this is not a perpetual commitment. Life circumstances change, and I want to be honest about that rather than promise something I cannot guarantee forever. If, at some future point, I am no longer able to host the site myself, I will give the squadron at least \textbf{six months' written notice} and will assist in migrating the site to a successor host --- whether that is another volunteer, a paid hosting provider, or whatever the squadron chooses at the time. The squadron will own its content, its data, and its domain throughout; nothing about this arrangement creates a lock-in.
+
+% --- 4. Cost ------------------------------------------------------------------
+\section{Terms}
+
+The summary table above states the cost (\textasciitilde{}CAD\,\$20/yr domain) and what I ask in return (portfolio acknowledgement). Two details worth spelling out:
+
+\begin{itemize}[leftmargin=1.4em,itemsep=0.4em]
+  \item \textbf{Domain ownership stays with the squadron.} The domain should be registered in the squadron's name (or in the name of the sponsoring committee), not mine. I will help select a name and configure DNS, but I will not register it on your behalf --- the squadron's web identity belongs to the squadron.
+  \item \textbf{Portfolio acknowledgement is public-only.} On my résumé, portfolio, and career profiles I would name the squadron as the beneficiary, link to the live site, and describe my role accurately. I will not publish anything the squadron would consider sensitive (member information, internal documents, etc.) --- only what is already visible on the public website.
+\end{itemize}
+
+% --- 5. Site review ----------------------------------------------------------
+\section{Site review and feedback}\label{sec:review}
+
+The website as it stands is a working draft, not a finished product. Before it goes live on the public domain, I want squadron leadership and staff to look through every page and flag anything that should change --- wording, photos, names, contact details, page structure, French translations, layout, colour, tone, anything at all. My expectation is that revisions \emph{will} be needed; the goal of this stage is to surface them.
+
+\textbf{Process:}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item I share a private preview link to the draft site (not yet on the public domain).
+  \item Squadron staff and reviewers walk through each page on a phone and on a desktop.
+  \item Reviewers send me a single written list of requested changes --- by email, or noted directly in the space below.
+  \item I revise, redeploy the preview, and repeat for as many rounds as needed at no additional cost.
+  \item Once squadron leadership signs off, the site goes live on the registered domain.
+\end{enumerate}
+
+\subsection*{Reviewer notes}
+\noindent Use the space below (or attach a separate sheet) to record changes, additions, or questions while reviewing the draft:
+
+\vspace{0.4em}
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+
+% --- 6. Proposed timeline ----------------------------------------------------
+\section{Proposed next steps}
+
+If the squadron leadership and sponsoring committee are willing to proceed, the rough sequence is:
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item \textbf{Approval in principle} from squadron leadership / sponsoring committee.
+  \item \textbf{Domain selection and registration} by the squadron (\textasciitilde{}30 minutes, \textasciitilde{}\$20).
+  \item \textbf{Site review:} squadron staff walk through the draft and send back a list of requested changes (see \S\ref{sec:review}). I revise until leadership signs off.
+  \item \textbf{Go-live:} I point the domain at my hosting and the site is publicly reachable. Estimated within \textbf{two weeks} of approval.
+  \item \textbf{Staff training:} a 30--45-minute walkthrough (in person or by video call) showing admins and editors how to log in, edit text, and upload images.
+  \item \textbf{Ongoing:} I monitor and maintain; staff update content as needed; we revisit annually to make sure everything still serves the squadron's needs.
+\end{enumerate}
+
+% --- Closing -----------------------------------------------------------------
+\vspace{1.5em}
+\noindent
+Thank you for considering this proposal. I would be glad to present it in person at a squadron staff or sponsoring-committee meeting if that would help. Questions or feedback can go to \href{mailto:\propEmail}{\propEmail}.
+
+\vspace{2em}
+\noindent\rule{\linewidth}{0.4pt}
+\begin{center}
+\small\color{muted}
+Submitted \propDate{} --- \propAuthor
+\end{center}
+
+\end{document}
