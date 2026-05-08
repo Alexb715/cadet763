@@ -1,0 +1,206 @@
+\documentclass[11pt,letterpaper]{article}
+
+% --- Paquets ------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+% --- Couleurs / style ---------------------------------------------------------
+\definecolor{accent}{HTML}{0B3D91}   % Bleu de type Aviation
+\definecolor{muted}{HTML}{555555}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=accent,
+  citecolor=accent,
+  pdftitle={Proposition : Site Web officiel pour l'Escadron 763},
+  pdfauthor={Alex Beaulieu}
+}
+
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries\color{accent!85!black}}{\thesubsection}{0.6em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small\color{muted}Proposition --- Site Web de l'Escadron 763}
+\fancyfoot[R]{\small\color{muted}Page \thepage\ sur \pageref{LastPage}}
+
+% --- Métadonnées du document --------------------------------------------------
+\newcommand{\propTitle}{Proposition pour un site Web officiel}
+\newcommand{\propSubtitle}{Escadron 763 «\,Bouctouche\,», Cadets de l'Aviation royale du Canada}
+\newcommand{\propAuthor}{Alex Beaulieu}
+\newcommand{\propEmail}{abeaulieu815@gmail.com}
+\newcommand{\propDate}{\today}
+
+% =============================================================================
+\begin{document}
+
+% --- Page de couverture -------------------------------------------------------
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+{\Huge\bfseries\color{accent}\propTitle\par}
+\vspace{0.6cm}
+{\Large\propSubtitle\par}
+
+\vspace{2.5cm}
+\rule{0.6\linewidth}{0.4pt}\\[0.4cm]
+{\large Préparée par \textbf{\propAuthor}\par}
+{\normalsize \href{mailto:\propEmail}{\propEmail}\par}
+\vspace{0.4cm}
+\rule{0.6\linewidth}{0.4pt}
+
+\vfill
+{\normalsize\color{muted}\propDate\par}
+\end{titlepage}
+
+% --- Sommaire -----------------------------------------------------------------
+\section*{En un coup d'\oe{}il}
+\addcontentsline{toc}{section}{En un coup d'\oe{}il}
+
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\toprule
+\textbf{Ce que j'offre} & Un site Web complet, moderne et bilingue (FR/EN) pour l'Escadron 763, conçu et entretenu par moi, sans frais de main-d'\oe{}uvre. \\
+\textbf{Ce qu'il comprend} & Site public, fil d'actualités, renseignements sur l'instruction et l'inscription, répertoire du personnel, galeries de photos et un panneau d'administration convivial pour que le personnel de l'escadron puisse mettre à jour le contenu sans toucher au code. \\
+\textbf{Ce que je fournis} & Conception, développement, hébergement sur une infrastructure que j'exploite déjà, mises à jour logicielles, correctifs de sécurité, sauvegardes et soutien par courriel --- pour une période prolongée (voir \S\ref{sec:engagement}). \\
+\textbf{Ce que l'escadron paie} & Un nom de domaine (p.~ex.\ \texttt{763aircadets.ca}), qui coûte environ \textbf{20\,\$\,CA par année} chez n'importe quel registraire. Rien d'autre. \\
+\textbf{Ce que je demande en retour} & La permission d'inscrire ce projet à mon CV et à mon portfolio professionnel comme étant mon travail. \\
+\bottomrule
+\end{tabularx}
+
+% --- 1. Pourquoi --------------------------------------------------------------
+\section{Pourquoi un site Web dédié est important}
+
+L'escadron dépend actuellement des médias sociaux pour sa visibilité. Cela fonctionne, mais comporte des limites bien réelles. Un site Web dédié renforce l'escadron de manières concrètes :
+
+\begin{description}[style=nextline,leftmargin=1.4em,itemsep=0.4em]
+  \item[Recrutement.] Les parents et les cadets potentiels qui cherchent «\,cadets de l'air Bouctouche\,» devraient aboutir sur une page qui répond immédiatement aux questions qu'ils se posent réellement : \emph{Qui êtes-vous ? Où vous rencontrez-vous ? Quand ? Est-ce gratuit ? Comment s'inscrire ?} Une page Facebook n'apparaît pas de façon fiable pour ces requêtes ; un véritable site Web bien référencé, oui.
+  \item[Crédibilité.] Un site Web officiel témoigne du sérieux de l'escadron auprès des parents, des commanditaires et de la communauté locale. C'est ce que l'on attend d'une organisation affiliée aux Forces armées canadiennes et à la Ligue des cadets de l'Air.
+  \item[Indépendance face aux plateformes sociales.] L'information publiée sur un site Web n'est pas enterrée par un algorithme, cachée derrière une connexion, ni soumise aux changements de politique d'une plateforme. Elle reste accessible et indexable de façon permanente.
+  \item[Service bilingue.] Bouctouche est une communauté à majorité francophone. Un site bilingue (FR/EN) sert correctement la population locale --- non pas comme une traduction faite après coup, mais comme une fonctionnalité de premier plan.
+  \item[Source d'information unique.] Horaires de rencontre, adresse, coordonnées, exigences d'inscription et calendrier d'instruction se trouvent au même endroit, facile à partager et à tenir à jour.
+  \item[Une plateforme qui grandit avec l'escadron.] Une fois les fondations en place, les ajouts futurs (formulaires, archives photographiques, pages d'anciens, avis de financement) se construisent par-dessus sans repartir de zéro.
+\end{description}
+
+% --- 2. Ce qui sera livré -----------------------------------------------------
+\section{Ce que je livrerai}
+
+Le site est déjà en grande partie construit. Ce que cette proposition formalise, c'est le déploiement, l'exploitation continue et le transfert du contrôle éditorial au personnel de l'escadron.
+
+\subsection{Fonctionnalités publiques}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Interface bilingue (français/anglais) avec basculement de langue en un clic, à l'image de la communauté que sert l'escadron.
+  \item Page d'accueil avec section principale, les trois piliers de l'escadron (Civisme, Leadership, Aviation), aperçu des dernières actualités et bandeau de contact.
+  \item Pages dédiées pour : \emph{À propos}, \emph{Instruction}, \emph{Personnel}, \emph{Actualités} et \emph{Comment s'inscrire}.
+  \item Fil d'actualités alimenté automatiquement à partir de la page Facebook de l'escadron (publications et événements à venir) : les mises à jour publiées sur Facebook apparaissent sur le site Web sans travail supplémentaire.
+  \item Conception adaptée d'abord au mobile --- la majorité des parents visiteront depuis un téléphone.
+  \item Balisage soucieux de l'accessibilité (HTML sémantique, navigation au clavier, contraste de couleurs raisonnable).
+\end{itemize}
+
+\subsection{Fonctionnalités d'administration (à l'usage du personnel)}
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Connexion sécurisée pour le personnel de l'escadron avec deux rôles : \textbf{administrateur} (contrôle complet, y compris la gestion des utilisateurs) et \textbf{éditeur} (modifications de contenu seulement).
+  \item Édition sur place : tout texte du site peut être modifié en cliquant dessus une fois connecté --- pas de Markdown, pas de HTML, pas de code.
+  \item Bibliothèque d'images avec téléversement, remplacement et réutilisation, pour que le personnel puisse échanger des photos directement depuis le navigateur.
+  \item Changement de mot de passe en libre-service et gestion des utilisateurs par l'administrateur.
+  \item Bandeau «\,mode édition\,» bien visible pour que le personnel sache toujours si ses modifications sont visibles au public.
+\end{itemize}
+
+\subsection{Sous le capot (en bref)}
+Une interface React moderne, un petit serveur dorsal en Go et une base de données SQLite, le tout exécuté dans des conteneurs Docker derrière le proxy inverse que j'exploite déjà. La pile est légère, rapide et peu coûteuse à héberger. Rien de tout cela ne devrait préoccuper les utilisateurs au quotidien --- ce qui compte, c'est que le site est robuste et économique à maintenir en service de mon côté.
+
+% --- 3. Engagement ------------------------------------------------------------
+\section{Engagement d'hébergement et de soutien}\label{sec:engagement}
+
+J'hébergerai et entretiendrai personnellement le site sur l'infrastructure que j'exploite déjà pour d'autres projets. Cela inclut :
+
+\begin{itemize}[leftmargin=1.4em,itemsep=0.25em]
+  \item Hébergement serveur et bande passante.
+  \item Certificats TLS / HTTPS (renouvelés automatiquement).
+  \item Mises à jour logicielles régulières et correctifs de sécurité.
+  \item Sauvegardes hors-serveur de la base de données et des images téléversées.
+  \item Soutien par courriel pour le personnel de l'escadron en cas de problème ou pour intégrer un nouvel éditeur.
+  \item Petites améliorations raisonnables --- corrections de fautes, ajustements de mise en page, ajout d'une nouvelle photo de personnel, etc.
+\end{itemize}
+
+\textbf{Durée.} Je m'engage à fournir cet hébergement et ce soutien \textbf{pour une période prolongée --- un minimum de trois ans, avec l'intention de continuer bien au-delà aussi longtemps que cela demeure pratique pour moi}. Pour être transparent : il ne s'agit pas d'un engagement perpétuel. Les circonstances de la vie changent, et je préfère être honnête à ce sujet plutôt que de promettre quelque chose que je ne peux garantir à jamais. Si, à un moment donné, je ne suis plus en mesure d'héberger le site moi-même, je donnerai à l'escadron un préavis écrit d'au moins \textbf{six mois} et j'aiderai à migrer le site vers un hôte successeur --- qu'il s'agisse d'un autre bénévole, d'un fournisseur d'hébergement payant ou de tout autre choix de l'escadron à ce moment-là. L'escadron sera propriétaire de son contenu, de ses données et de son domaine du début à la fin ; rien dans cet arrangement ne crée de verrouillage.
+
+% --- 4. Conditions ------------------------------------------------------------
+\section{Conditions}
+
+Le tableau récapitulatif ci-dessus indique le coût (environ 20\,\$\,CA/an pour le domaine) et ce que je demande en retour (mention au portfolio). Deux détails méritent d'être précisés :
+
+\begin{itemize}[leftmargin=1.4em,itemsep=0.4em]
+  \item \textbf{La propriété du domaine reste à l'escadron.} Le domaine doit être enregistré au nom de l'escadron (ou au nom du comité répondant), pas au mien. J'aiderai à choisir un nom et à configurer le DNS, mais je ne l'enregistrerai pas en votre nom --- l'identité Web de l'escadron appartient à l'escadron.
+  \item \textbf{La mention au portfolio se limite au public.} Sur mon CV, mon portfolio et mes profils professionnels, je nommerai l'escadron à titre de bénéficiaire, créerai un lien vers le site en ligne et décrirai mon rôle avec exactitude. Je ne publierai rien que l'escadron jugerait sensible (renseignements sur les membres, documents internes, etc.) --- uniquement ce qui est déjà visible sur le site Web public.
+\end{itemize}
+
+% --- 5. Examen du site --------------------------------------------------------
+\section{Examen du site et rétroaction}\label{sec:revision}
+
+Le site, dans son état actuel, est un brouillon de travail, pas un produit fini. Avant la mise en ligne sur le domaine public, je souhaite que la direction et le personnel de l'escadron parcourent chaque page et signalent tout ce qui devrait être modifié --- formulation, photos, noms, coordonnées, structure des pages, traductions françaises, mise en page, couleurs, ton, n'importe quoi. Mon attente est que des révisions \emph{seront} nécessaires ; le but de cette étape est précisément de les faire émerger.
+
+\textbf{Processus :}
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item Je partage un lien d'aperçu privé vers le brouillon (pas encore sur le domaine public).
+  \item Le personnel et les réviseurs de l'escadron parcourent chaque page sur un téléphone et sur un ordinateur de bureau.
+  \item Les réviseurs m'envoient une seule liste écrite des changements demandés --- par courriel, ou notés dans l'espace ci-dessous.
+  \item Je révise, redéploie l'aperçu, et je répète autant de cycles que nécessaire, sans frais supplémentaires.
+  \item Une fois que la direction de l'escadron donne son accord, le site est mis en ligne sur le domaine enregistré.
+\end{enumerate}
+
+\subsection*{Notes des réviseurs}
+\noindent Utilisez l'espace ci-dessous (ou joignez une feuille séparée) pour consigner changements, ajouts ou questions pendant l'examen du brouillon :
+
+\vspace{0.4em}
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+\rule{\linewidth}{0.4pt}\\[1.4em]
+
+% --- 6. Prochaines étapes -----------------------------------------------------
+\section{Prochaines étapes proposées}
+
+Si la direction de l'escadron et le comité répondant sont disposés à aller de l'avant, la séquence approximative est la suivante :
+
+\begin{enumerate}[leftmargin=1.6em,itemsep=0.25em]
+  \item \textbf{Approbation de principe} par la direction de l'escadron / le comité répondant.
+  \item \textbf{Choix et enregistrement du domaine} par l'escadron (\textasciitilde{}30\,minutes, \textasciitilde{}20\,\$).
+  \item \textbf{Examen du site :} le personnel parcourt le brouillon et me transmet une liste de changements demandés (voir \S\ref{sec:revision}). Je révise jusqu'à l'accord de la direction.
+  \item \textbf{Mise en ligne :} je dirige le domaine vers mon hébergement et le site devient accessible publiquement. Estimé dans les \textbf{deux semaines} suivant l'approbation.
+  \item \textbf{Formation du personnel :} une visite guidée de 30 à 45\,minutes (en personne ou par appel vidéo) montrant aux administrateurs et aux éditeurs comment se connecter, modifier du texte et téléverser des images.
+  \item \textbf{En continu :} je surveille et entretiens ; le personnel met à jour le contenu au besoin ; nous faisons un bilan annuel pour nous assurer que le site sert toujours bien les besoins de l'escadron.
+\end{enumerate}
+
+% --- Conclusion ---------------------------------------------------------------
+\vspace{1.5em}
+\noindent
+Merci d'avoir pris le temps d'examiner cette proposition. Je serais heureux de la présenter en personne lors d'une réunion du personnel de l'escadron ou du comité répondant, si cela peut être utile. Toute question ou rétroaction peut être envoyée à \href{mailto:\propEmail}{\propEmail}.
+
+\vspace{2em}
+\noindent\rule{\linewidth}{0.4pt}
+\begin{center}
+\small\color{muted}
+Soumise le \propDate{} --- \propAuthor
+\end{center}
+
+\end{document}
