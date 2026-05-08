@@ -1,0 +1,21 @@
+services:
+  backend:
+    environment:
+      APP_ENV: development
+      LOG_LEVEL: debug
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+    ports:
+      - "${BACKEND_HOST_PORT:-8080}:8080"
+
+  frontend:
+    # In dev we run Vite on the host (npm run dev) for HMR. The nginx-served
+    # build is gated behind a profile; opt in with --profile with-frontend-container.
+    profiles: ["with-frontend-container"]
+    ports:
+      - "${FRONTEND_HOST_PORT:-8081}:80"
+
+networks:
+  proxy:
+    # Make the external network optional in dev so contributors don't have to
+    # `docker network create cadets_proxy` just to test locally.
+    external: false

@@ -1,0 +1,123 @@
+
+/* ====== HERO 2 — Horizon (animated horizon + parallax) ====== */
+.hero-horizon { padding-bottom: 0; }
+.hero-horizon .hero-grid { padding-bottom: 0; }
+.hero-horizon .hero-art {
+  position: relative;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 60%, color-mix(in oklab, var(--navy-2) 60%, var(--accent)) 100%);
+}
+.horizon-sun {
+  position: absolute;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 90%, white) 0%, var(--accent) 40%, transparent 72%);
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(2px);
+  animation: sunBob 6s ease-in-out infinite;
+}
+@keyframes sunBob { 0%,100%{transform: translate(-50%,0);} 50%{transform: translate(-50%,-8px);} }
+.horizon-line {
+  position: absolute;
+  bottom: 35%;
+  left: 0; right: 0; height: 1px;
+  background: rgba(255,255,255,.3);
+}
+.horizon-clouds {
+  position: absolute; inset: 0;
+}
+.horizon-clouds span {
+  position: absolute;
+  height: 1.5px; background: rgba(255,255,255,.4);
+  animation: cloudFly 18s linear infinite;
+}
+.horizon-clouds span:nth-child(1) { top: 25%; width: 60px; left: -60px; animation-delay: 0s; }
+.horizon-clouds span:nth-child(2) { top: 35%; width: 90px; left: -90px; animation-delay: -6s; }
+.horizon-clouds span:nth-child(3) { top: 48%; width: 40px; left: -40px; animation-delay: -10s; }
+.horizon-clouds span:nth-child(4) { top: 18%; width: 75px; left: -75px; animation-delay: -14s; }
+@keyframes cloudFly { to { left: 110%; } }
+
+.horizon-plane-svg {
+  position: absolute; bottom: 30%; right: 18%;
+  width: 30%;
+  z-index: 2;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.5));
+  animation: planeBank 5s ease-in-out infinite;
+}
+@keyframes planeBank {
+  0%,100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-12px); }
+}
+.horizon-grid {
+  position: absolute; inset: 35% 0 0 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0;
+  transform: perspective(600px) rotateX(60deg);
+  transform-origin: top center;
+  mask-image: linear-gradient(180deg, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, black 30%, transparent 100%);
+  animation: gridScroll 4s linear infinite;
+}
+@keyframes gridScroll { from { background-position-y: 0; } to { background-position-y: 40px; } }
+
+/* ====== HERO 3 — Bold Type (large typo + ticker) ====== */
+.hero-type .hero-grid {
+  grid-template-columns: 1fr;
+  text-align: left;
+  padding-bottom: 0;
+}
+.hero-type h1 {
+  font-size: clamp(64px, 13vw, 200px);
+  letter-spacing: -0.045em;
+  font-weight: 900;
+  line-height: 0.9;
+  margin: 24px 0 32px;
+}
+.hero-type .lead { max-width: 640px; font-size: 21px; }
+.hero-type .hero-art-row {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+@media (max-width: 920px) {
+  .hero-type .hero-art-row { grid-template-columns: 1fr; }
+}
+
+/* Ticker */
+.ticker {
+  background: var(--primary);
+  color: #fff;
+  padding: 18px 0;
+  overflow: hidden;
+  border-top: 1px solid color-mix(in oklab, var(--primary) 70%, white 30%);
+  border-bottom: 1px solid color-mix(in oklab, var(--primary) 70%, white 30%);
+  position: relative;
+  z-index: 1;
+}
+.ticker-track {
+  display: flex; gap: 48px;
+  animation: tick 32s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-item {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: 'Schibsted Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+.ticker-item .star {
+  color: var(--accent); font-size: 14px;
+}
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }

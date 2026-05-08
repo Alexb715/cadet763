@@ -1,0 +1,61 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      args:
+        VERSION: ${VERSION:-dev}
+    image: cadets-backend:${VERSION:-dev}
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      DB_PATH: /data/app.db
+      UPLOADS_DIR: /data/uploads
+      LISTEN_ADDR: :8080
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN}
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-}
+      SESSION_TTL: ${SESSION_TTL:-720h}
+      FB_PAGE_ID: ${FB_PAGE_ID:-}
+      FB_PAGE_TOKEN: ${FB_PAGE_TOKEN:-}
+      FB_MIRROR_IMAGES: ${FB_MIRROR_IMAGES:-true}
+      IMAGE_GC_DAYS: ${IMAGE_GC_DAYS:-14}
+      IMAGE_GC_INTERVAL: ${IMAGE_GC_INTERVAL:-6h}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-}
+    volumes:
+      - cadets_data:/data
+    # Pattern B (proxy is on host, not in Docker): uncomment and set the
+    # BACKEND_HOST_PORT / BACKEND_BIND vars in .env.
+    # ports:
+    #   - "${BACKEND_BIND:-127.0.0.1}:${BACKEND_HOST_PORT:-8080}:8080"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/cadets-server", "-healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks: [internal, proxy]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: cadets-frontend:${VERSION:-dev}
+    restart: unless-stopped
+    # Pattern B: uncomment to bind nginx to a host port.
+    # ports:
+    #   - "${FRONTEND_BIND:-127.0.0.1}:${FRONTEND_HOST_PORT:-8081}:80"
+    networks: [internal, proxy]
+    depends_on:
+      - backend
+
+volumes:
+  cadets_data:
+
+networks:
+  internal:
+  # Attach your existing reverse proxy to this network so it can reach
+  # `backend:8080` and `frontend:80` by service name.
+  #   docker network create cadets_proxy
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:-cadets_proxy}
