@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { SITE_PALETTE, SITE_DENSITY, SITE_HERO, SITE_BLOG } from './config.js';
+import { USE_BACKEND } from './api/client.js';
 
 import { useAuth } from './hooks/useAuth.js';
 import { useContent } from './hooks/useContent.js';
 import { useLang, usePage } from './hooks/useNavState.js';
+import { useReveal } from './hooks/useReveal.js';
 
 import { Nav } from './components/Nav.jsx';
 import { Footer } from './components/Footer.jsx';
@@ -41,6 +43,9 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [editing, user, lang]);
 
+  // Reveal-on-scroll for elements tagged `.reveal`; re-scans on page/lang change.
+  useReveal([page, lang]);
+
   const setImage = (slot, url) => set('images', { ...(content.images || {}), [slot]: url });
   const pageProps = { lang, content, editing: editing && !!user, set, setImage };
 
@@ -58,7 +63,7 @@ export default function App() {
 
       {page === 'home' && (
         <>
-          <Hero which={SITE_HERO} {...pageProps} />
+          <Hero which={SITE_HERO} setPage={setPage} {...pageProps} />
           <PillarsSection {...pageProps} />
           <HomeNewsTeaser lang={lang} layout={SITE_BLOG} setPage={setPage} />
           <ContactBand {...pageProps} />
@@ -90,9 +95,9 @@ export default function App() {
           user={user}
           lang={lang}
           onDone={() => setEditing(false)}
-          onShowHistory={user.role === 'admin' ? () => setShowHistory(true) : undefined}
-          onShowUsers={user.role === 'admin' ? () => setShowUsers(true) : undefined}
-          onShowPassword={() => setShowPassword(true)}
+          onShowHistory={USE_BACKEND && user.role === 'admin' ? () => setShowHistory(true) : undefined}
+          onShowUsers={USE_BACKEND && user.role === 'admin' ? () => setShowUsers(true) : undefined}
+          onShowPassword={USE_BACKEND ? () => setShowPassword(true) : undefined}
           onReset={reset}
         />
       )}

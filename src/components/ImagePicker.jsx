@@ -29,6 +29,12 @@ export function ImagePicker({ onPick, onClose, lang = 'en' }) {
 
   useEffect(() => { reload(); }, []);
 
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
   const handleUpload = async (file) => {
     if (!file) return;
     setBusy(true);
@@ -47,9 +53,9 @@ export function ImagePicker({ onPick, onClose, lang = 'en' }) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal" style={{ maxWidth: 720 }} onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
-        <h3>{t({ en: 'Pick or upload an image', fr: 'Choisir ou téléverser une image' })}</h3>
+      <div className="modal" style={{ maxWidth: 720 }} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="imgpicker-title">
+        <button className="modal-close" onClick={onClose} aria-label={t({ en: 'Close', fr: 'Fermer' })}>✕</button>
+        <h3 id="imgpicker-title">{t({ en: 'Pick or upload an image', fr: 'Choisir ou téléverser une image' })}</h3>
         <p style={{ fontSize: 13, color: 'var(--muted, #555)' }}>
           {t({
             en: 'Images are stripped of EXIF metadata when uploaded. JPEG, PNG, and WebP up to 8 MB. Unreferenced images are auto-removed 14 days after their last use.',
@@ -100,7 +106,7 @@ export function ImagePicker({ onPick, onClose, lang = 'en' }) {
           {loading && <div style={{ gridColumn: '1/-1', padding: 24, textAlign: 'center' }}>…</div>}
           {!loading && items.length === 0 && (
             <div style={{ gridColumn: '1/-1', padding: 24, textAlign: 'center', color: 'var(--muted)' }}>
-              {t({ en: 'No images yet — upload one above.', fr: 'Aucune image — téléversez-en une.' })}
+              {t({ en: 'No images yet, upload one above.', fr: 'Aucune image, téléversez-en une.' })}
             </div>
           )}
           {items.map((img) => (

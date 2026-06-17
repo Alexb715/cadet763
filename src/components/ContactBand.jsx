@@ -2,7 +2,7 @@ import { pickT } from '../i18n.js';
 import { EditableText } from './EditableText.jsx';
 
 // Only the headline and lead paragraph are editable. The address, hours,
-// phone, and email are intentionally static — they back tel:/mailto: links
+// phone, and email are intentionally static - they back tel:/mailto: links
 // and have formatting (line breaks, dashes, "h" for French hours) that's
 // easy for a non-technical editor to break. To change those, edit this file.
 export function ContactBand({ lang, content, editing, set }) {
@@ -11,7 +11,7 @@ export function ContactBand({ lang, content, editing, set }) {
   return (
     <section className="contact-band" id="contact">
       <div className="container">
-        <div className="contact-grid">
+        <div className="contact-grid reveal">
           <div>
             <span className="pill pill-on-dark" style={{ marginBottom: 16 }}>
               {t({ en: 'Visit · Call · Email', fr: 'Visiter · Appeler · Écrire' })}
@@ -25,7 +25,7 @@ export function ContactBand({ lang, content, editing, set }) {
               />
             ) : (
               <h2>
-                {t(content?.contactTitle || { en: 'Drop in any Wednesday night.', fr: 'Passez nous voir un mercredi soir.' })}
+                {t(content?.contactTitle || { en: 'Drop in any Tuesday night.', fr: 'Passez nous voir un mardi soir.' })}
               </h2>
             )}
             {editable && content.contactBody ? (
@@ -38,8 +38,8 @@ export function ContactBand({ lang, content, editing, set }) {
             ) : (
               <p className="lead">
                 {t(content?.contactBody || {
-                  en: 'No appointment needed. Bring your son or daughter to a parade night — we’ll show you around, introduce the staff, and answer any questions.',
-                  fr: 'Aucun rendez-vous requis. Amenez votre jeune un mercredi soir — visite guidée, présentation du personnel, et réponses à vos questions.',
+                  en: 'No appointment needed. Bring your son or daughter to a parade night, we’ll show you around, introduce the staff, and answer any questions.',
+                  fr: 'Aucun rendez-vous requis. Amenez votre jeune un mardi soir : visite guidée, présentation du personnel, et réponses à vos questions.',
                 })}
               </p>
             )}
@@ -63,7 +63,7 @@ export function ContactBand({ lang, content, editing, set }) {
               <div>
                 <div className="lbl">{t({ en: 'Parade night', fr: 'Soirée d’entraînement' })}</div>
                 <div className="val">
-                  {t({ en: 'Wednesdays · 18:30 – 21:00', fr: 'Mercredis · 18 h 30 – 21 h' })}<br/>
+                  {t({ en: 'Tuesdays · 18:30 – 21:00', fr: 'Mardis · 18 h 30 – 21 h' })}<br/>
                   <span style={{ opacity: 0.6, fontSize: 13 }}>{t({ en: 'September through June', fr: 'De septembre à juin' })}</span>
                 </div>
               </div>

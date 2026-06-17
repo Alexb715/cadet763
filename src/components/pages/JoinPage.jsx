@@ -6,17 +6,17 @@ const REQS = [
   { en: 'Live in or near Kent County, NB',                fr: 'Habiter dans le comté de Kent ou en périphérie' },
   { en: 'Canadian citizen or permanent resident',         fr: 'Citoyen canadien ou résident permanent' },
   { en: 'In good health (medical form to fill)',          fr: 'En bonne santé (formulaire médical à remplir)' },
-  { en: 'Available Wednesday evenings, Sept – June',      fr: 'Disponible les mercredis soir, sept. – juin' },
+  { en: 'Available Tuesday evenings, Sept – June',      fr: 'Disponible les mardis soir, sept. – juin' },
   { en: 'Curious, respectful, ready to try new things',   fr: 'Curieux, respectueux, prêt à essayer' },
 ];
 
 const STEPS = [
   { n: '01', t: { en: 'Drop in',   fr: 'Visite' },
-    d: { en: 'Come to a Wednesday parade night with your parent. We give you a tour, you watch a training period.',
-         fr: 'Venez un mercredi soir avec un parent. Visite guidée et observation d’une période d’instruction.' } },
+    d: { en: 'Come to a Tuesday parade night with your parent. We give you a tour, you watch a training period.',
+         fr: 'Venez un mardi soir avec un parent. Visite guidée et observation d’une période d’instruction.' } },
   { n: '02', t: { en: 'Paperwork', fr: 'Inscription' },
-    d: { en: 'A few forms — registration, medical, photo consent. We help you fill them out.',
-         fr: 'Quelques formulaires — inscription, médical, autorisation photo. Nous vous accompagnons.' } },
+    d: { en: 'A few forms: registration, medical, photo consent. We help you fill them out.',
+         fr: 'Quelques formulaires : inscription, médical, autorisation photo. Nous vous accompagnons.' } },
   { n: '03', t: { en: 'Uniform',   fr: 'Uniforme' },
     d: { en: 'Issued at no cost within 2–3 weeks. Boots, beret, tunic, shirts, the works.',
          fr: 'Remis gratuitement en 2 à 3 semaines. Bottes, béret, tunique, chemises, etc.' } },
@@ -31,15 +31,15 @@ export function JoinPage({ lang, content, editing, setImage }) {
   return (
     <section className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">{t({ en: 'Recruitment is open', fr: 'Inscriptions ouvertes' })}</span>
-          <h2>{t({ en: 'Become a 763 cadet.', fr: 'Devenez cadet du 763.' })}</h2>
+          <h1>{t({ en: 'Become a 763 cadet.', fr: 'Devenez cadet du 763.' })}</h1>
           <p className="lead">{t({
-            en: 'Free to join. No experience required. Drop in any Wednesday at 18:30 and we will introduce you to the program.',
-            fr: 'Adhésion gratuite. Aucune expérience requise. Passez un mercredi à 18 h 30 et nous vous présenterons le programme.',
+            en: 'Free to join. No experience required. Drop in any Tuesday at 18:30 and we will introduce you to the program.',
+            fr: 'Adhésion gratuite. Aucune expérience requise. Passez un mardi à 18 h 30 et nous vous présenterons le programme.',
           })}</p>
         </div>
-        <div className="split" style={{ marginBottom: 64 }}>
+        <div className="split reveal" style={{ marginBottom: 64 }}>
           <div>
             <h3 style={{ fontSize: 24, fontWeight: 700, marginBottom: 18 }}>
               {t({ en: 'What you need', fr: 'Ce qu’il vous faut' })}
@@ -71,9 +71,9 @@ export function JoinPage({ lang, content, editing, setImage }) {
         <h3 style={{ fontSize: 28, fontWeight: 700, marginBottom: 24 }}>
           {t({ en: 'How it works', fr: 'Comment ça marche' })}
         </h3>
-        <div className="activities-grid">
+        <div className="steps-grid reveal">
           {STEPS.map((s, i) => (
-            <div className="pillar" key={i} style={{ minHeight: 200 }}>
+            <div className="pillar" style={{ minHeight: 200 }} key={i}>
               <div className="num">{s.n}</div>
               <h3 style={{ marginTop: 8 }}>{t(s.t)}</h3>
               <p>{t(s.d)}</p>

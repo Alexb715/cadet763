@@ -29,7 +29,7 @@ export function PillarsSection({ lang, content, editing, set }) {
   return (
     <section className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">{t({ en: 'The four aims', fr: 'Les quatre objectifs' })}</span>
           <EditableText
             tag="h2" editing={editing}

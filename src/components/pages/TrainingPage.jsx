@@ -8,15 +8,15 @@ export function TrainingPage({ lang, content, editing, setImage }) {
   return (
     <section className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">{t({ en: 'Training program', fr: 'Programme d’instruction' })}</span>
-          <h2>{t({ en: 'Five years. Real skills.', fr: 'Cinq années. Compétences concrètes.' })}</h2>
+          <h1>{t({ en: 'Five years. Real skills.', fr: 'Cinq années. Compétences concrètes.' })}</h1>
           <p className="lead">{t({
-            en: 'Cadets progress through five proficiency levels. Each level mixes mandatory training with optional activities — drill, aviation, sports, music, and more.',
-            fr: 'Les cadets progressent en cinq niveaux. Chaque niveau combine instruction obligatoire et activités optionnelles — exercice, aviation, sports, musique, etc.',
+            en: 'Cadets progress through five proficiency levels. Each level mixes mandatory training with optional activities: drill, aviation, sports, music, and more.',
+            fr: 'Les cadets progressent en cinq niveaux. Chaque niveau combine instruction obligatoire et activités optionnelles : exercice, aviation, sports, musique, etc.',
           })}</p>
         </div>
-        <div className="activities-grid">
+        <div className="activities-grid reveal">
           {ACTIVITIES.map((a, i) => (
             <article className="activity" key={i}>
               <EditableImage

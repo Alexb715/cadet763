@@ -1,7 +1,7 @@
 import { api, USE_BACKEND } from './client.js';
 
 // Demo accounts used when no backend is wired up. Swap for real credentials
-// once your backend is online — the contract is documented in BACKEND.md.
+// once your backend is online - the contract is documented in BACKEND.md.
 const DEMO_ACCOUNTS = [
   { user: 'admin',  pass: 'cadet763', role: 'admin',  name: 'Capt. Cormier' },
   { user: 'editor', pass: 'cadet763', role: 'editor', name: 'Lt. LeBlanc' },

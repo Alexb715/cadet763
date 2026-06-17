@@ -20,10 +20,10 @@ export function Footer({ lang, setPage }) {
           <div>
             <h4>{t({ en: 'Explore', fr: 'Explorer' })}</h4>
             <ul>
-              <li><a onClick={() => setPage('about')}>{t({ en: 'About', fr: 'À propos' })}</a></li>
-              <li><a onClick={() => setPage('training')}>{t({ en: 'Training', fr: 'Programme' })}</a></li>
-              <li><a onClick={() => setPage('news')}>{t({ en: 'News', fr: 'Nouvelles' })}</a></li>
-              <li><a onClick={() => setPage('staff')}>{t({ en: 'Staff', fr: 'Officiers' })}</a></li>
+              <li><a href="#about" onClick={(e) => { e.preventDefault(); setPage('about'); }}>{t({ en: 'About', fr: 'À propos' })}</a></li>
+              <li><a href="#training" onClick={(e) => { e.preventDefault(); setPage('training'); }}>{t({ en: 'Training', fr: 'Programme' })}</a></li>
+              <li><a href="#news" onClick={(e) => { e.preventDefault(); setPage('news'); }}>{t({ en: 'News', fr: 'Nouvelles' })}</a></li>
+              <li><a href="#staff" onClick={(e) => { e.preventDefault(); setPage('staff'); }}>{t({ en: 'Staff', fr: 'Officiers' })}</a></li>
             </ul>
           </div>
           <div>
@@ -31,8 +31,8 @@ export function Footer({ lang, setPage }) {
             <ul>
               <li>1545 Route 525, Unit 2</li>
               <li>Ste-Marie-de-Kent, NB</li>
-              <li>{t({ en: 'Wednesdays 18:30', fr: 'Mercredis 18 h 30' })}</li>
-              <li>Sept – {t({ en: 'June', fr: 'juin' })}</li>
+              <li>{t({ en: 'Tuesdays 18:30', fr: 'Mardis 18 h 30' })}</li>
+              <li>{t({ en: 'Sept – June', fr: 'Sept. – juin' })}</li>
             </ul>
           </div>
           <div>

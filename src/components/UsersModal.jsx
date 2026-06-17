@@ -205,8 +205,8 @@ export function UsersModal({ onClose, lang = 'en', currentUser }) {
         <h3>{t({ en: 'Users', fr: 'Utilisateurs' })}</h3>
         <p style={{ fontSize: 13, color: 'var(--ink-soft)' }}>
           {t({
-            en: 'Create new editors and admins, reset passwords, disable accounts. Newly generated passwords appear once — copy them somewhere safe before closing the dialog.',
-            fr: 'Créez éditeurs et administrateurs, réinitialisez mots de passe, désactivez comptes. Les mots de passe générés apparaissent une seule fois — copiez-les avant de fermer.',
+            en: 'Create new editors and admins, reset passwords, disable accounts. Newly generated passwords appear once. Copy them somewhere safe before closing the dialog.',
+            fr: 'Créez éditeurs et administrateurs, réinitialisez mots de passe, désactivez comptes. Les mots de passe générés apparaissent une seule fois. Copiez-les avant de fermer.',
           })}
         </p>
 

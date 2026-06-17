@@ -1,5 +1,5 @@
 
-/* ====== HERO 2 — Horizon (animated horizon + parallax) ====== */
+/* ====== HERO 2 - Horizon (animated horizon + parallax) ====== */
 .hero-horizon { padding-bottom: 0; }
 .hero-horizon .hero-grid { padding-bottom: 0; }
 .hero-horizon .hero-art {
@@ -67,7 +67,7 @@
 }
 @keyframes gridScroll { from { background-position-y: 0; } to { background-position-y: 40px; } }
 
-/* ====== HERO 3 — Bold Type (large typo + ticker) ====== */
+/* ====== HERO 3 - Bold Type (large typo + ticker) ====== */
 .hero-type .hero-grid {
   grid-template-columns: 1fr;
   text-align: left;
@@ -87,9 +87,21 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
   align-items: stretch;
+  min-width: 0;
 }
+/* Grid items default to min-width:auto, which can refuse to shrink and push the
+   row past the container; pin them to 0 so the three tiles always fit. */
+.hero-type .hero-grid,
+.hero-type .hero-grid > *,
+.hero-type .hero-art-row > * { min-width: 0; }
 @media (max-width: 920px) {
-  .hero-type .hero-art-row { grid-template-columns: 1fr; }
+  /* Keep the three tiles as a compact filmstrip rather than three
+     full-width, near-viewport-tall boxes stacked down the page. */
+  .hero-type .hero-art-row { gap: 10px; margin-top: 36px; }
+}
+@media (max-width: 560px) {
+  .hero-type .hero-art-row { gap: 8px; }
+  .hero-type h1 { font-size: clamp(52px, 12vw, 72px); }
 }
 
 /* Ticker */

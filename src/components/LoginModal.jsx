@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { pickT } from '../i18n.js';
 import { USE_BACKEND } from '../api/client.js';
 
@@ -7,6 +7,12 @@ export function LoginModal({ onClose, onLogin, lang = 'en' }) {
   const [p, setP] = useState('');
   const [err, setErr] = useState('');
   const t = pickT(lang);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -17,9 +23,9 @@ export function LoginModal({ onClose, onLogin, lang = 'en' }) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close">✕</button>
-        <h3>{t({ en: 'Staff sign-in', fr: 'Connexion du personnel' })}</h3>
+      <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="login-title">
+        <button className="modal-close" onClick={onClose} aria-label={t({ en: 'Close', fr: 'Fermer' })}>✕</button>
+        <h3 id="login-title">{t({ en: 'Staff sign-in', fr: 'Connexion du personnel' })}</h3>
         <p>{t({
           en: 'Restricted to squadron officers and editors. Used to keep the website current.',
           fr: 'Réservé aux officiers et éditeurs de l’escadron. Sert à garder le site à jour.',

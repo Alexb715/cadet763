@@ -18,7 +18,14 @@ export function Nav({ page, setPage, lang, setLang, user, onSignIn, onSignOut, e
   return (
     <header className={'nav' + (open ? ' nav-mobile-open' : '')}>
       <div className="nav-inner">
-        <div className="brand" onClick={() => { setPage('home'); setOpen(false); }}>
+        <div
+          className="brand"
+          onClick={() => { setPage('home'); setOpen(false); }}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPage('home'); setOpen(false); } }}
+          role="button"
+          tabIndex={0}
+          aria-label={t({ en: '763 Bouctouche, home', fr: '763 Bouctouche, accueil' })}
+        >
           <Logo />
           <div className="brand-text">
             <div className="t1">763 Bouctouche</div>
@@ -57,7 +64,12 @@ export function Nav({ page, setPage, lang, setLang, user, onSignIn, onSignOut, e
               {t({ en: 'Sign in', fr: 'Connexion' })}
             </button>
           )}
-          <button className="nav-burger" onClick={() => setOpen(!open)} aria-label="Menu">
+          <button
+            className="nav-burger"
+            onClick={() => setOpen(!open)}
+            aria-label={t({ en: 'Menu', fr: 'Menu' })}
+            aria-expanded={open}
+          >
             <span></span><span></span><span></span>
           </button>
         </div>

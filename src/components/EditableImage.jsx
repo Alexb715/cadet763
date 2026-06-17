@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { pickT } from '../i18n.js';
 import { PhotoPlaceholder } from './PhotoPlaceholder.jsx';
 import { ImagePicker } from './ImagePicker.jsx';
 
@@ -10,14 +11,20 @@ export function EditableImage({
   url,
   alt = '',
   label,
+  kind,
+  name,
   editing,
   onPick,
   lang,
   style,
   className,
 }) {
+  const t = pickT(lang);
   const [open, setOpen] = useState(false);
   const showPicker = () => editing && setOpen(true);
+  const onKey = (e) => {
+    if (editing && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setOpen(true); }
+  };
   const handlePicked = (img) => {
     setOpen(false);
     if (img && onPick) onPick(slot, img.thumbUrl || img.url);
@@ -40,7 +47,9 @@ export function EditableImage({
         }}
         className={className}
         role={editing ? 'button' : undefined}
-        aria-label={editing ? 'Change image' : undefined}
+        tabIndex={editing ? 0 : undefined}
+        onKeyDown={editing ? onKey : undefined}
+        aria-label={editing ? t({ en: 'Change image', fr: 'Changer l’image' }) : undefined}
       >
         {url ? (
           <img
@@ -55,7 +64,13 @@ export function EditableImage({
             }}
           />
         ) : (
-          <PhotoPlaceholder label={label} style={{ width: '100%', height: '100%', borderRadius }} />
+          <PhotoPlaceholder
+            label={label}
+            kind={kind}
+            name={name}
+            seed={slot}
+            style={{ width: '100%', height: '100%', borderRadius }}
+          />
         )}
         {editing && (
           <div
@@ -84,7 +99,7 @@ export function EditableImage({
               }}
             >
               {url ? '✎ ' : '＋ '}
-              {url ? 'Replace' : 'Add image'}
+              {url ? t({ en: 'Replace', fr: 'Remplacer' }) : t({ en: 'Add image', fr: 'Ajouter une image' })}
             </span>
           </div>
         )}

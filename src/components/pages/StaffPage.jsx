@@ -30,15 +30,15 @@ export function StaffPage({ lang, content, editing, set, setImage }) {
   return (
     <section className="section">
       <div className="container">
-        <div className="section-head">
+        <div className="section-head reveal">
           <span className="eyebrow">{t({ en: 'Squadron leadership', fr: 'Direction de l’escadron' })}</span>
-          <h2>{t({ en: 'Meet the team.', fr: 'Notre équipe.' })}</h2>
+          <h1>{t({ en: 'Meet the team.', fr: 'Notre équipe.' })}</h1>
           <p className="lead">{t({
             en: 'CIC officers, civilian instructors, and dedicated volunteers from the community. All adult staff are vetted and trained by the Department of National Defence.',
             fr: 'Officiers du CIC, instructeurs civils et bénévoles dévoués de la communauté. Tout le personnel adulte est vérifié et formé par le ministère de la Défense nationale.',
           })}</p>
         </div>
-        <div className="staff-grid">
+        <div className="staff-grid reveal">
           {STAFF.map((_, i) => {
             const s = mergeStaff(i, overrides);
             return (
@@ -47,6 +47,8 @@ export function StaffPage({ lang, content, editing, set, setImage }) {
                   slot={`staff.${i}`}
                   url={images[`staff.${i}`]}
                   className="staff-photo"
+                  kind="portrait"
+                  name={s.name}
                   label={s.rank}
                   style={{ aspectRatio: 1, borderRadius: 14 }}
                   editing={editing}

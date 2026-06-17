@@ -1,9 +1,8 @@
 import { pickT } from '../i18n.js';
 import { EditableText } from './EditableText.jsx';
-import { PhotoPlaceholder } from './PhotoPlaceholder.jsx';
 import { EditableImage } from './EditableImage.jsx';
 
-function HeroEditable({ lang, content, editing, set }) {
+function HeroEditable({ lang, content, editing, set, setPage }) {
   const t = pickT(lang);
   return (
     <>
@@ -25,8 +24,10 @@ function HeroEditable({ lang, content, editing, set }) {
         onChange={(v) => set('heroLead', { ...content.heroLead, [lang]: v })}
       />
       <div className="hero-cta">
-        <a className="btn btn-primary btn-arrow">{t({ en: 'Join the squadron', fr: 'Joindre l’escadron' })}</a>
-        <a className="btn btn-ghost">{t({ en: 'Visit a parade night', fr: 'Visiter un mercredi' })}</a>
+        <button type="button" className="btn btn-primary btn-arrow" onClick={() => setPage?.('join')}>
+          {t({ en: 'Join the squadron', fr: 'Joindre l’escadron' })}
+        </button>
+        <a className="btn btn-ghost" href="#contact">{t({ en: 'Visit a parade night', fr: 'Visiter un mardi' })}</a>
       </div>
     </>
   );
@@ -113,11 +114,11 @@ function HeroType(props) {
   const { lang, content, editing, setImage } = props;
   const t = pickT(lang);
   const ticker = [
-    'Aviation',
+    t({ en: 'Aviation', fr: 'Aviation' }),
     t({ en: 'Leadership', fr: 'Leadership' }),
     t({ en: 'Citizenship', fr: 'Civisme' }),
     t({ en: 'Adventure', fr: 'Aventure' }),
-    'Drill',
+    t({ en: 'Drill', fr: 'Exercice' }),
     t({ en: 'Survival', fr: 'Survie' }),
     t({ en: 'Music', fr: 'Musique' }),
     t({ en: 'Marksmanship', fr: 'Tir' }),

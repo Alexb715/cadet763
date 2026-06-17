@@ -9,11 +9,11 @@ export function AboutPage({ lang, content, editing, set, setImage }) {
     <>
       <section className="section">
         <div className="container">
-          <div className="split">
+          <div className="split reveal">
             <div className="split-text">
               <span className="eyebrow">{t(content.aboutEyebrow)}</span>
               <EditableText
-                tag="h2" editing={editing} style={{ marginTop: 14 }}
+                tag="h1" editing={editing} style={{ marginTop: 14 }}
                 value={t(content.aboutTitle)}
                 onChange={(v) => set('aboutTitle', { ...content.aboutTitle, [lang]: v })}
               />
@@ -51,7 +51,7 @@ export function AboutPage({ lang, content, editing, set, setImage }) {
         style={{ background: 'var(--paper)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}
       >
         <div className="container">
-          <div className="split">
+          <div className="split reveal">
             <div>
               <span className="eyebrow">{t(content.missionTitle)}</span>
               <h3 style={{ fontSize: 'clamp(28px,3.5vw,40px)', marginTop: 14 }}>
