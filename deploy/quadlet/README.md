@@ -1,10 +1,10 @@
 # Podman Quadlet (build + run)
 
 Builds the two images from this repo and runs the full stack rootless, behind a
-single published port (`3001`) — the Quadlet equivalent of a one-container app.
+single published port (`8088`) — the Quadlet equivalent of a one-container app.
 
 ```
-your tunnel ─▶ cadets-web :3001 ─┬─ /api/* ─▶ cadets-backend :8080 ─▶ cadets-data volume
+your tunnel ─▶ cadets-web :8088 ─┬─ /api/* ─▶ cadets-backend :8080 ─▶ cadets-data volume
                                  └─ /*     ─▶ cadets-frontend :80 (nginx SPA)
 ```
 
@@ -15,7 +15,7 @@ Units:
 | `cadets-data.volume` | named volume for the SQLite db + uploaded images |
 | `cadets-backend.build` / `.container` | build + run the Go API |
 | `cadets-frontend.build` / `.container` | build + run the nginx SPA |
-| `cadets-web.container` | Caddy gateway: publishes `:3001`, routes `/api` vs `/` |
+| `cadets-web.container` | Caddy gateway: publishes `:8088`, routes `/api` vs `/` |
 | `Caddyfile` | gateway routing (+ optional viewing password) |
 
 > Requires **Podman 5.0+** (for `.build` units). Older Podman: see the fallback
@@ -53,7 +53,7 @@ Units:
    podman exec cadets-backend /usr/local/bin/cadets-seed
    ```
 
-5. Open `http://<host>:3001`, or point your existing tunnel at port `3001`.
+5. Open `http://<host>:8088`, or point your existing tunnel at port `8088`.
 
 ## Optional: viewing password
 

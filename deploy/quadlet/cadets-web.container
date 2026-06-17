@@ -7,7 +7,7 @@ After=cadets-backend.service cadets-frontend.service
 ContainerName=cadets-web
 Image=docker.io/library/caddy:2-alpine
 Network=cadets.network
-PublishPort=3001:3001/tcp
+PublishPort=8088:8088/tcp
 # CHANGE the host path to where you cloned the repo.
 Volume=/home/alex/cadet763/deploy/quadlet/Caddyfile:/etc/caddy/Caddyfile:ro,Z
 AutoUpdate=registry

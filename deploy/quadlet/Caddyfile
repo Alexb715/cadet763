@@ -1,9 +1,10 @@
-# Gateway for the Quadlet stack. Serves plain HTTP on :3001 and routes:
+# Gateway for the Quadlet stack. Serves plain HTTP on :8088 and routes:
 #   /api/*  -> backend     (left ungated; the editor uses bearer tokens)
 #   /*      -> frontend SPA (optionally password-gated)
 # Your tunnel/proxy is expected to terminate HTTPS in front of this.
+# (Port 8088 avoids clashing with other apps already on 3001, etc.)
 
-:3001 {
+:8088 {
 	handle /api/* {
 		reverse_proxy cadets-backend:8080
 	}
