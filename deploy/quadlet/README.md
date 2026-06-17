@@ -15,8 +15,8 @@ Units:
 | `cadets-data.volume` | named volume for the SQLite db + uploaded images |
 | `cadets-backend.build` / `.container` | build + run the Go API |
 | `cadets-frontend.build` / `.container` | build + run the nginx SPA |
-| `cadets-web.container` | Caddy gateway: publishes `:8088`, routes `/api` vs `/` |
-| `Caddyfile` | gateway routing (+ optional viewing password) |
+| `cadets-web.build` / `.container` | Caddy gateway: builds an image with `Caddyfile` baked in, publishes `:8088`, routes `/api` vs `/` |
+| `caddy.Containerfile` / `Caddyfile` | gateway image recipe + routing (incl. optional viewing password) |
 
 > Requires **Podman 5.0+** (for `.build` units). Older Podman: see the fallback
 > at the bottom.
@@ -26,7 +26,7 @@ Units:
 1. **Clone the repo on the server** and edit these placeholders to match its path:
    - `SetWorkingDirectory=` in `cadets-backend.build` (→ `<repo>/backend`) and
      `cadets-frontend.build` (→ `<repo>`).
-   - `Volume=...` Caddyfile path in `cadets-web.container` (→ `<repo>/deploy/quadlet/Caddyfile`).
+   - `SetWorkingDirectory=` in `cadets-web.build` (→ `<repo>/deploy/quadlet`).
    - `FRONTEND_ORIGIN=` and `ADMIN_BOOTSTRAP_PASS=` in `cadets-backend.container`.
 
 2. **Install the unit files** (rootless):
@@ -37,7 +37,7 @@ Units:
       deploy/quadlet/cadets-data.volume \
       deploy/quadlet/cadets-backend.build  deploy/quadlet/cadets-backend.container \
       deploy/quadlet/cadets-frontend.build deploy/quadlet/cadets-frontend.container \
-      deploy/quadlet/cadets-web.container \
+      deploy/quadlet/cadets-web.build deploy/quadlet/cadets-web.container \
       ~/.config/containers/systemd/
    ```
    (The `Caddyfile` stays in the repo; it's mounted by the absolute path you set above.)
@@ -61,13 +61,14 @@ Edit `deploy/quadlet/Caddyfile`, generate a hash and uncomment the `basic_auth`
 block:
 ```sh
 podman run --rm docker.io/library/caddy:2-alpine caddy hash-password --plaintext 'your-pass'
-systemctl --user restart cadets-web.service
+# the Caddyfile is baked into the image, so rebuild then restart:
+systemctl --user restart cadets-web-build.service cadets-web.service
 ```
 
 ## Rebuild after a `git pull`
 
 ```sh
-systemctl --user restart cadets-backend-build.service cadets-frontend-build.service
+systemctl --user restart cadets-backend-build.service cadets-frontend-build.service cadets-web-build.service
 systemctl --user restart cadets-backend.service cadets-frontend.service cadets-web.service
 ```
 
