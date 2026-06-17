@@ -1,0 +1,27 @@
+# 763 Cadets - private demo gateway (serves plain HTTP; your tunnel provides HTTPS).
+#
+# One password gates the whole site for viewers. /api/* is passed straight
+# through because the in-app editor uses bearer tokens, which collide with HTTP
+# Basic auth; the API only serves the same public content, and every edit still
+# requires the in-app admin login.
+#
+# Set the viewing password before first run:
+#   cp deploy/Caddyfile.example deploy/Caddyfile
+#   HASH=$(docker run --rm caddy:2-alpine caddy hash-password --plaintext 'YOUR-VIEW-PASSWORD')
+#   sed -i "s#REPLACE_WITH_HASH#${HASH}#" deploy/Caddyfile
+#
+# (Username is "squadron" - change it below if you like. On Caddy < 2.8 the
+#  directive is "basicauth" instead of "basic_auth".)
+
+:8088 {
+	handle /api/* {
+		reverse_proxy backend:8080
+	}
+	handle {
+		basic_auth {
+			squadron REPLACE_WITH_HASH
+		}
+		header X-Robots-Tag "noindex, nofollow"
+		reverse_proxy frontend:80
+	}
+}

@@ -1,0 +1,28 @@
+# Private demo overlay: runs the full stack behind ONE viewing password.
+# A small Caddy "gateway" sits in front of frontend + backend, so your existing
+# tunnel only needs to reach a single port.
+#
+#   docker network create cadets_proxy             # one-time (base compose expects it)
+#   cp deploy/Caddyfile.example deploy/Caddyfile    # then set the password hash (see that file)
+#   docker compose -f docker-compose.yml -f docker-compose.demo.yml up -d --build
+#   docker compose run --rm backend /usr/local/bin/cadets-seed   # creates the admin login
+#
+# Then point your tunnel at  http://localhost:${DEMO_PORT:-8088}
+# (set DEMO_BIND=0.0.0.0 in .env if your tunnel runs in a separate container).
+
+services:
+  gateway:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on: [frontend, backend]
+    networks: [internal]
+    ports:
+      - "${DEMO_BIND:-127.0.0.1}:${DEMO_PORT:-8088}:8088"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

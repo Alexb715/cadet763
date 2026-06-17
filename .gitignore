@@ -11,3 +11,6 @@ backend/data/
 backend/*.db
 backend/*.db-shm
 backend/*.db-wal
+
+# Demo gateway config with the real password hash (keep local)
+deploy/Caddyfile
