@@ -1,0 +1,20 @@
+# Gateway for the Quadlet stack. Serves plain HTTP on :3001 and routes:
+#   /api/*  -> backend     (left ungated; the editor uses bearer tokens)
+#   /*      -> frontend SPA (optionally password-gated)
+# Your tunnel/proxy is expected to terminate HTTPS in front of this.
+
+:3001 {
+	handle /api/* {
+		reverse_proxy cadets-backend:8080
+	}
+	handle {
+		# To require a viewing password, generate a hash:
+		#   podman run --rm docker.io/library/caddy:2-alpine caddy hash-password --plaintext 'your-pass'
+		# then uncomment and paste it:
+		# basic_auth {
+		#     squadron REPLACE_WITH_HASH
+		# }
+		header X-Robots-Tag "noindex, nofollow"
+		reverse_proxy cadets-frontend:80
+	}
+}

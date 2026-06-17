@@ -1,0 +1,28 @@
+[Unit]
+Description=763 Cadets backend (Go API)
+After=local-fs.target
+
+[Container]
+ContainerName=cadets-backend
+# References the .build unit above; Quadlet builds it first.
+Image=cadets-backend.build
+Network=cadets.network
+Volume=cadets-data.volume:/data:U
+
+Environment=APP_ENV=production
+# Must match the URL people actually open it on (your tunnel domain or LAN IP:port).
+Environment=FRONTEND_ORIGIN=http://192.168.0.216:3001
+# Created by `cadets-seed` (see README) — change the password.
+Environment=ADMIN_BOOTSTRAP_USER=admin
+Environment=ADMIN_BOOTSTRAP_PASS=change-me-to-a-long-random-password
+Environment=ADMIN_BOOTSTRAP_NAME=Capt. Cormier
+# Facebook left empty -> news shows the bundled sample posts.
+# Environment=FB_PAGE_ID=
+# Environment=FB_PAGE_TOKEN=
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,7 @@
+[Unit]
+Description=763 Cadets internal network
+
+[Network]
+# Isolated bridge. Containers on it resolve each other by ContainerName
+# (cadets-backend, cadets-frontend).
+Driver=bridge

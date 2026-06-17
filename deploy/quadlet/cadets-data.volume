@@ -1,0 +1,6 @@
+[Unit]
+Description=763 Cadets data (SQLite db + uploaded images)
+
+[Volume]
+# Rootless-managed named volume. Mounted into the backend at /data with :U so
+# podman chowns it to the container's nonroot user.

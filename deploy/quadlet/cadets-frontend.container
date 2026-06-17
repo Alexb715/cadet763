@@ -1,0 +1,15 @@
+[Unit]
+Description=763 Cadets frontend (nginx static SPA)
+After=local-fs.target
+
+[Container]
+ContainerName=cadets-frontend
+Image=cadets-frontend.build
+Network=cadets.network
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
