@@ -1,9 +1,0 @@
-[Unit]
-Description=Build 763 Cadets web gateway image (Caddy + baked Caddyfile)
-
-[Build]
-ImageTag=localhost/cadets-web:latest
-# Build context = the deploy/quadlet dir (holds Caddyfile + caddy.Containerfile).
-# CHANGE this to wherever you cloned the repo on this server.
-SetWorkingDirectory=/home/alex/cadet763/deploy/quadlet
-File=caddy.Containerfile

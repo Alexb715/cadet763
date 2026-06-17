@@ -4,7 +4,10 @@ After=local-fs.target
 
 [Container]
 ContainerName=cadets-frontend
-Image=cadets-frontend.build
+# Built by CI and pulled from GHCR.
+Image=ghcr.io/alexb715/cadet763-frontend:latest
+Pull=newer
+AutoUpdate=registry
 Network=cadets.network
 
 [Service]

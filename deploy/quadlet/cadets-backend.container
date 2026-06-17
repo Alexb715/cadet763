@@ -4,8 +4,10 @@ After=local-fs.target
 
 [Container]
 ContainerName=cadets-backend
-# References the .build unit above; Quadlet builds it first.
-Image=cadets-backend.build
+# Built by CI and pulled from GHCR (no building on this server).
+Image=ghcr.io/alexb715/cadet763-backend:latest
+Pull=newer
+AutoUpdate=registry
 Network=cadets.network
 Volume=cadets-data.volume:/data:U
 

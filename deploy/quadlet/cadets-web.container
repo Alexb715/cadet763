@@ -5,8 +5,10 @@ After=cadets-backend.service cadets-frontend.service
 
 [Container]
 ContainerName=cadets-web
-# Built from caddy.Containerfile (Caddyfile baked in -> no fragile config mount).
-Image=cadets-web.build
+# Built by CI (Caddy with Caddyfile baked in) and pulled from GHCR.
+Image=ghcr.io/alexb715/cadet763-web:latest
+Pull=newer
+AutoUpdate=registry
 Network=cadets.network
 PublishPort=8088:8088/tcp
 

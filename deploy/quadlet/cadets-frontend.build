@@ -1,9 +1,0 @@
-[Unit]
-Description=Build 763 Cadets frontend image
-
-[Build]
-ImageTag=localhost/cadets-frontend:latest
-# Build context = the repo root (Dockerfile.frontend does `COPY . .`).
-# CHANGE this to wherever you cloned the repo on this server.
-SetWorkingDirectory=/home/alex/cadet763
-File=Dockerfile.frontend
